@@ -1,0 +1,10 @@
+{"budget":20000,"tripName":"Spiti Valley (sample)","currency":{"sym":"₹","code":"INR"},"days":7,"locked":true,
+ "expenses":[
+ {"id":1,"name":"Lunch","amount":400,"cat":"Food","day":1},
+ {"id":2,"name":"Bus","amount":1200,"cat":"Travel","day":1},
+ {"id":3,"name":"Homestay","amount":2500,"cat":"Stay","day":2},
+ {"id":4,"name":"Dinner","amount":500,"cat":"Food","day":2},
+ {"id":5,"name":"Fuel","amount":1500,"cat":"Fuel","day":3},
+ {"id":6,"name":"Trek entry","amount":600,"cat":"Activities","day":3},
+ {"id":7,"name":"Jacket","amount":9000,"cat":"Shopping","day":4},
+ {"id":8,"name":"Tea","amount":80,"cat":"Food","day":4}]}
