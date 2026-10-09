@@ -9,582 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Sora:wght@300;400;600;700&display=swap" rel="stylesheet">
-
-<style>
-:root {
-  --bg: #0a0a0f;
-  --surface: #13131a;
-  --surface2: #1c1c27;
-  --surface3: #252534;
-  --border: rgba(255,255,255,0.07);
-  --border2: rgba(255,255,255,0.12);
-  --text: #f0f0f8;
-  --muted: #7878a0;
-  --muted2: #55556e;
-  --accent: #7c6af7;
-  --accent2: #5a49e0;
-  --green: #2dd4a0;
-  --red: #f25f5f;
-  --amber: #f7c444;
-  --teal: #38d1d1;
-  --pink: #e96bbf;
-  --mono: 'DM Mono', monospace;
-  --sans: 'Sora', sans-serif;
-}
-
-*{box-sizing:border-box;margin:0;padding:0;}
-
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: var(--sans);
-  min-height: 100vh;
-  padding: 0 0 80px;
-}
-
-/* ---- HEADER ---- */
-.header {
-  background: var(--surface);
-  border-bottom: 1px solid var(--border);
-  padding: 18px 20px 14px;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-
-.header-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 14px;
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.logo-icon {
-  width: 32px;
-  height: 32px;
-  background: linear-gradient(135deg, var(--accent), var(--teal));
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 16px;
-}
-
-.logo-text {
-  font-size: 17px;
-  font-weight: 700;
-  letter-spacing: -0.3px;
-}
-
-.trip-name-display {
-  font-size: 11px;
-  color: var(--muted);
-  font-family: var(--mono);
-  margin-top: 1px;
-}
-
-.header-actions {
-  display: flex;
-  gap: 8px;
-}
-
-.icon-btn {
-  width: 34px;
-  height: 34px;
-  background: var(--surface2);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  font-size: 15px;
-  color: var(--muted);
-  transition: background 0.15s, color 0.15s;
-}
-.icon-btn:hover { background: var(--surface3); color: var(--text); }
-.icon-btn.danger:hover { background: rgba(242,95,95,0.15); color: var(--red); }
-
-/* ---- BUDGET BAR ---- */
-.budget-bar-wrap {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.budget-labels {
-  display: flex;
-  justify-content: space-between;
-  font-size: 11px;
-  font-family: var(--mono);
-  color: var(--muted);
-}
-
-.budget-bar {
-  height: 6px;
-  background: var(--surface3);
-  border-radius: 100px;
-  overflow: hidden;
-}
-
-.budget-fill {
-  height: 100%;
-  border-radius: 100px;
-  transition: width 0.5s cubic-bezier(.4,0,.2,1), background 0.3s;
-}
-
-/* ---- MAIN ---- */
-.main { padding: 16px; max-width: 500px; margin: 0 auto; }
-
-/* ---- STATS GRID ---- */
-.stats-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin-bottom: 12px;
-}
-
-.stat-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 14px 16px;
-}
-
-.stat-label {
-  font-size: 10px;
-  font-family: var(--mono);
-  color: var(--muted);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: 4px;
-}
-
-.stat-val {
-  font-size: 22px;
-  font-weight: 700;
-  font-family: var(--mono);
-  letter-spacing: -0.5px;
-}
-
-.stat-sub {
-  font-size: 10px;
-  color: var(--muted2);
-  margin-top: 2px;
-}
-
-/* ---- SECTION ---- */
-.section {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 16px;
-  margin-bottom: 12px;
-}
-
-.section-title {
-  font-size: 11px;
-  font-family: var(--mono);
-  color: var(--muted);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: 14px;
-}
-
-/* ---- BUDGET SETUP ---- */
-.input-row {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 10px;
-}
-
-.field-wrap {
-  flex: 1;
-  position: relative;
-}
-
-.field-label {
-  font-size: 10px;
-  color: var(--muted);
-  font-family: var(--mono);
-  margin-bottom: 5px;
-  letter-spacing: 0.5px;
-}
-
-input[type="text"],
-input[type="number"],
-select {
-  width: 100%;
-  background: var(--surface2);
-  border: 1px solid var(--border2);
-  border-radius: 10px;
-  color: var(--text);
-  font-family: var(--mono);
-  font-size: 14px;
-  padding: 11px 14px;
-  outline: none;
-  transition: border-color 0.15s;
-  -webkit-appearance: none;
-}
-
-input:focus, select:focus {
-  border-color: var(--accent);
-}
-
-input:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-select option { background: var(--surface2); }
-
-.currency-prefix {
-  position: absolute;
-  left: 12px;
-  bottom: 12px;
-  font-family: var(--mono);
-  font-size: 13px;
-  color: var(--muted);
-  pointer-events: none;
-}
-
-.has-prefix input { padding-left: 28px; }
-
-/* ---- BUTTONS ---- */
-.btn {
-  padding: 11px 18px;
-  border: none;
-  border-radius: 10px;
-  font-family: var(--sans);
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: transform 0.1s, opacity 0.15s;
-  white-space: nowrap;
-}
-.btn:active { transform: scale(0.96); }
-.btn:disabled { opacity: 0.4; cursor: not-allowed; }
-
-.btn-primary {
-  background: var(--accent);
-  color: #fff;
-}
-.btn-primary:hover:not(:disabled) { background: var(--accent2); }
-
-.btn-ghost {
-  background: var(--surface2);
-  color: var(--text);
-  border: 1px solid var(--border2);
-}
-.btn-ghost:hover { background: var(--surface3); }
-
-.btn-full { width: 100%; margin-top: 10px; }
-
-.btn-sm {
-  padding: 7px 14px;
-  font-size: 12px;
-}
-
-.adjust-row {
-  display: flex;
-  gap: 8px;
-  margin-top: 8px;
-}
-
-/* ---- CATEGORIES BREAKDOWN ---- */
-.cat-list { display: flex; flex-direction: column; gap: 8px; }
-
-.cat-row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.cat-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-
-.cat-name {
-  flex: 1;
-  font-size: 13px;
-  color: var(--muted);
-}
-
-.cat-bar-wrap {
-  flex: 2;
-  height: 4px;
-  background: var(--surface3);
-  border-radius: 100px;
-  overflow: hidden;
-}
-
-.cat-bar-fill {
-  height: 100%;
-  border-radius: 100px;
-  transition: width 0.5s;
-}
-
-.cat-amt {
-  font-family: var(--mono);
-  font-size: 12px;
-  min-width: 60px;
-  text-align: right;
-}
-
-/* ---- ADD EXPENSE ---- */
-.add-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin-bottom: 10px;
-}
-
-.add-grid .full { grid-column: 1 / -1; }
-
-/* ---- EXPENSE LIST ---- */
-.expense-item {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 12px 0;
-  border-bottom: 1px solid var(--border);
-  animation: slideIn 0.2s ease;
-}
-
-@keyframes slideIn {
-  from { opacity: 0; transform: translateY(-6px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-.expense-item:last-child { border-bottom: none; }
-
-.exp-cat-icon {
-  width: 36px;
-  height: 36px;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 16px;
-  flex-shrink: 0;
-}
-
-.exp-info { flex: 1; min-width: 0; }
-
-.exp-name {
-  font-size: 14px;
-  font-weight: 600;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.exp-meta {
-  font-size: 11px;
-  color: var(--muted);
-  font-family: var(--mono);
-  margin-top: 2px;
-}
-
-.exp-right {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.exp-amt {
-  font-family: var(--mono);
-  font-size: 15px;
-  font-weight: 500;
-}
-
-.del-btn {
-  background: none;
-  border: none;
-  color: var(--muted2);
-  cursor: pointer;
-  font-size: 14px;
-  padding: 4px;
-  border-radius: 6px;
-  transition: background 0.15s, color 0.15s;
-}
-.del-btn:hover { background: rgba(242,95,95,0.15); color: var(--red); }
-
-.empty-state {
-  text-align: center;
-  padding: 30px 0;
-  color: var(--muted2);
-  font-size: 13px;
-}
-.empty-icon { font-size: 28px; margin-bottom: 8px; }
-
-/* ---- FILTER TABS ---- */
-.filter-tabs {
-  display: flex;
-  gap: 6px;
-  margin-bottom: 14px;
-  overflow-x: auto;
-  scrollbar-width: none;
-  padding-bottom: 2px;
-}
-.filter-tabs::-webkit-scrollbar { display: none; }
-
-.tab {
-  padding: 6px 12px;
-  border-radius: 100px;
-  font-size: 11px;
-  font-family: var(--mono);
-  font-weight: 500;
-  background: var(--surface2);
-  border: 1px solid var(--border);
-  color: var(--muted);
-  cursor: pointer;
-  white-space: nowrap;
-  transition: all 0.15s;
-}
-.tab.active {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: #fff;
-}
-
-/* ---- MODALS ---- */
-.modal-bg {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.7);
-  backdrop-filter: blur(8px);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-  padding: 20px;
-}
-.modal-bg.open { display: flex; }
-
-.modal {
-  background: var(--surface);
-  border: 1px solid var(--border2);
-  border-radius: 20px;
-  padding: 24px;
-  width: 100%;
-  max-width: 340px;
-}
-
-.modal h3 {
-  font-size: 18px;
-  font-weight: 700;
-  margin-bottom: 6px;
-}
-
-.modal p {
-  color: var(--muted);
-  font-size: 13px;
-  margin-bottom: 16px;
-  line-height: 1.6;
-}
-
-.modal-actions {
-  display: flex;
-  gap: 10px;
-  margin-top: 16px;
-}
-
-/* ---- DAY BADGE ---- */
-.day-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  background: rgba(124,106,247,0.15);
-  border: 1px solid rgba(124,106,247,0.25);
-  border-radius: 100px;
-  padding: 4px 10px;
-  font-size: 11px;
-  font-family: var(--mono);
-  color: var(--accent);
-  margin-bottom: 14px;
-}
-
-/* ---- TOAST ---- */
-.toast {
-  position: fixed;
-  bottom: 24px;
-  left: 50%;
-  transform: translateX(-50%) translateY(80px);
-  background: var(--surface3);
-  border: 1px solid var(--border2);
-  border-radius: 100px;
-  padding: 10px 20px;
-  font-size: 13px;
-  color: var(--text);
-  z-index: 9999;
-  transition: transform 0.3s cubic-bezier(.4,0,.2,1);
-  white-space: nowrap;
-}
-.toast.show { transform: translateX(-50%) translateY(0); }
-
-/* ---- CURRENCY SELECTOR ---- */
-.currency-row {
-  display: flex;
-  gap: 6px;
-  flex-wrap: wrap;
-  margin-bottom: 14px;
-}
-
-.currency-opt {
-  padding: 6px 12px;
-  border-radius: 8px;
-  font-size: 12px;
-  font-family: var(--mono);
-  background: var(--surface2);
-  border: 1px solid var(--border);
-  color: var(--muted);
-  cursor: pointer;
-  transition: all 0.15s;
-}
-.currency-opt.sel {
-  background: rgba(124,106,247,0.2);
-  border-color: var(--accent);
-  color: var(--accent);
-}
-
-/* ---- NOTES ---- */
-.notes-field {
-  width: 100%;
-  background: var(--surface2);
-  border: 1px solid var(--border2);
-  border-radius: 10px;
-  color: var(--text);
-  font-family: var(--mono);
-  font-size: 13px;
-  padding: 11px 14px;
-  resize: none;
-  height: 60px;
-  outline: none;
-}
-.notes-field:focus { border-color: var(--accent); }
-
-/* ---- PYTHON ANALYSIS ---- */
-.an-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:10px; margin-bottom:14px; }
-.an-stat { background:var(--surface2); border:1px solid var(--border); border-radius:12px; padding:12px; }
-.an-stat .l { font-size:10px; font-family:var(--mono); color:var(--muted); letter-spacing:.06em; text-transform:uppercase; }
-.an-stat .v { font-family:var(--mono); font-size:18px; margin-top:4px; }
-.an-insight { display:flex; gap:10px; font-size:13px; line-height:1.5; padding:9px 0; border-bottom:1px solid var(--border); color:var(--text); }
-.an-insight:last-child { border-bottom:none; }
-.an-insight::before { content:''; width:6px; height:6px; border-radius:50%; background:var(--accent); margin-top:7px; flex-shrink:0; }
-.an-insight.warn::before { background:var(--red); }
-.an-chart { width:100%; border-radius:12px; margin-top:12px; border:1px solid var(--border); display:block; }
-.an-note { color:var(--muted2); font-size:12px; text-align:center; padding:6px 0 0; }
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -601,20 +26,15 @@ select option { background: var(--surface2); }
     <div class="header-actions">
       <div class="icon-btn" onclick="exportTrip()" title="Export trip data (JSON)">⬇</div>
       <div class="icon-btn" onclick="openSettings()" title="Settings">⚙</div>
-      <div class="icon-btn danger" onclick="openReset()" title="New trip">↺</div>
+      <div class="icon-btn danger" onclick="openModal('resetBG')" title="New trip">↺</div>
     </div>
   </div>
-
-  <div class="budget-bar-wrap">
-    <div class="budget-labels">
-      <span id="barSpentLabel">Spent: 0</span>
-      <span id="barPctLabel">0% used</span>
-      <span id="barBudgetLabel">Budget: 0</span>
-    </div>
-    <div class="budget-bar">
-      <div class="budget-fill" id="budgetFill" style="width:0%;background:var(--green)"></div>
-    </div>
+  <div class="budget-labels">
+    <span id="barSpentLabel">Spent: 0</span>
+    <span id="barPctLabel">0% used</span>
+    <span id="barBudgetLabel">Budget: 0</span>
   </div>
+  <div class="budget-bar"><div class="budget-fill" id="budgetFill"></div></div>
 </div>
 
 <div class="main">
@@ -623,39 +43,39 @@ select option { background: var(--surface2); }
   <div class="stats-grid">
     <div class="stat-card">
       <div class="stat-label">Total Spent</div>
-      <div class="stat-val" id="totalSpentVal" style="color:var(--text)">0</div>
+      <div class="stat-val" id="totalSpentVal">0</div>
       <div class="stat-sub" id="totalSpentSub">0 expenses</div>
     </div>
     <div class="stat-card">
       <div class="stat-label">Remaining</div>
-      <div class="stat-val" id="remainingVal" style="color:var(--green)">0</div>
+      <div class="stat-val green" id="remainingVal">0</div>
       <div class="stat-sub" id="remainingSub">of 0 budget</div>
     </div>
     <div class="stat-card">
       <div class="stat-label">Daily Avg</div>
-      <div class="stat-val" id="dailyAvgVal" style="color:var(--teal)">—</div>
+      <div class="stat-val teal" id="dailyAvgVal">—</div>
       <div class="stat-sub" id="dailyAvgSub">day 1</div>
     </div>
     <div class="stat-card">
       <div class="stat-label">Top Category</div>
-      <div class="stat-val" id="topCatVal" style="color:var(--amber);font-size:14px;padding-top:4px">—</div>
+      <div class="stat-val amber small" id="topCatVal">—</div>
       <div class="stat-sub" id="topCatSub">no expenses yet</div>
     </div>
   </div>
 
-  <!-- BUDGET SETUP -->
-  <div class="section" id="budgetSection">
+  <!-- TRIP SETUP -->
+  <div class="section">
     <div class="section-title">Trip Setup</div>
 
-    <div class="field-wrap" style="margin-bottom:10px">
+    <div class="field-wrap mb10">
       <div class="field-label">TRIP NAME</div>
       <input type="text" id="tripNameInput" placeholder="e.g. Spiti Valley 2025">
     </div>
 
     <div class="input-row">
-      <div class="field-wrap has-prefix" style="flex:2">
+      <div class="field-wrap has-prefix grow2">
         <div class="field-label">TOTAL BUDGET</div>
-        <span class="currency-prefix" id="currPrefix">₹</span>
+        <span class="prefix">₹</span>
         <input type="number" id="budgetInput" placeholder="0">
       </div>
       <div class="field-wrap">
@@ -664,96 +84,60 @@ select option { background: var(--surface2); }
       </div>
     </div>
 
-    <div class="field-label" style="margin-bottom:6px">CURRENCY</div>
-    <div class="currency-row" id="currencyRow">
-      <div class="currency-opt sel" data-sym="₹" data-code="INR" onclick="selCurrency(this)">₹ INR</div>
-      <div class="currency-opt" data-sym="$" data-code="USD" onclick="selCurrency(this)">$ USD</div>
-      <div class="currency-opt" data-sym="€" data-code="EUR" onclick="selCurrency(this)">€ EUR</div>
-      <div class="currency-opt" data-sym="£" data-code="GBP" onclick="selCurrency(this)">£ GBP</div>
-      <div class="currency-opt" data-sym="¥" data-code="JPY" onclick="selCurrency(this)">¥ JPY</div>
-    </div>
+    <div class="field-label">CURRENCY</div>
+    <div class="currency-row" id="currencyRow"></div>
 
-    <button class="btn btn-primary btn-full" id="lockBtn" onclick="lockBudget()">Lock Budget & Start Trip</button>
-
-    <div class="adjust-row" id="adjustRow" style="display:none">
-      <button class="btn btn-ghost btn-sm" style="flex:1" onclick="openAdjust(true)">+ Increase</button>
-      <button class="btn btn-ghost btn-sm" style="flex:1" onclick="openAdjust(false)">− Decrease</button>
+    <button class="btn btn-primary btn-full" id="lockBtn" onclick="lockBudget()">Lock Budget &amp; Start Trip</button>
+    <div class="adjust-row" id="adjustRow" hidden>
+      <button class="btn btn-ghost btn-sm" onclick="openAdjust(true)">+ Increase</button>
+      <button class="btn btn-ghost btn-sm" onclick="openAdjust(false)">− Decrease</button>
     </div>
   </div>
 
-  <!-- CATEGORIES BREAKDOWN -->
-  <div class="section" id="catSection">
+  <!-- CATEGORY BREAKDOWN -->
+  <div class="section">
     <div class="section-title">Spending by Category</div>
-    <div class="cat-list" id="catList">
-      <div style="color:var(--muted2);font-size:13px;text-align:center;padding:8px 0">No expenses yet</div>
-    </div>
+    <div class="cat-list" id="catList"></div>
   </div>
 
   <!-- ADD EXPENSE -->
   <div class="section">
     <div class="section-title">Add Expense</div>
-
     <div class="add-grid">
       <div class="field-wrap full">
         <div class="field-label">DESCRIPTION</div>
         <input type="text" id="expName" placeholder="e.g. Dal Baati lunch">
       </div>
-
       <div class="field-wrap has-prefix">
         <div class="field-label">AMOUNT</div>
-        <span class="currency-prefix" id="expPrefix">₹</span>
+        <span class="prefix">₹</span>
         <input type="number" id="expAmt" placeholder="0">
       </div>
-
       <div class="field-wrap">
         <div class="field-label">DAY #</div>
         <input type="number" id="expDay" placeholder="1" min="1" value="1">
       </div>
-
       <div class="field-wrap full">
         <div class="field-label">CATEGORY</div>
-        <select id="expCat">
-          <option value="Food">🍜 Food & Drink</option>
-          <option value="Travel">🚌 Travel & Transport</option>
-          <option value="Stay">🏕 Stay & Lodging</option>
-          <option value="Activities">🧗 Activities & Entry</option>
-          <option value="Shopping">🛍 Shopping</option>
-          <option value="Medical">💊 Medical & Safety</option>
-          <option value="Fuel">⛽ Fuel</option>
-          <option value="Other">📦 Other</option>
-        </select>
+        <select id="expCat"></select>
       </div>
-
       <div class="field-wrap full">
         <div class="field-label">NOTE (optional)</div>
-        <textarea class="notes-field" id="expNote" placeholder="Any extra detail..."></textarea>
+        <textarea id="expNote" placeholder="Any extra detail..."></textarea>
       </div>
     </div>
-
     <button class="btn btn-primary btn-full" onclick="addExpense()">+ Add Expense</button>
   </div>
 
-  <!-- EXPENSE LIST -->
+  <!-- EXPENSE LOG -->
   <div class="section">
     <div class="section-title">Expense Log</div>
-
-    <div class="filter-tabs" id="filterTabs">
-      <div class="tab active" data-filter="All" onclick="setFilter(this)">All</div>
-      <div class="tab" data-filter="Food" onclick="setFilter(this)">🍜 Food</div>
-      <div class="tab" data-filter="Travel" onclick="setFilter(this)">🚌 Travel</div>
-      <div class="tab" data-filter="Stay" onclick="setFilter(this)">🏕 Stay</div>
-      <div class="tab" data-filter="Activities" onclick="setFilter(this)">🧗 Activities</div>
-      <div class="tab" data-filter="Shopping" onclick="setFilter(this)">🛍 Shopping</div>
-      <div class="tab" data-filter="Medical" onclick="setFilter(this)">💊 Medical</div>
-      <div class="tab" data-filter="Fuel" onclick="setFilter(this)">⛽ Fuel</div>
-      <div class="tab" data-filter="Other" onclick="setFilter(this)">📦 Other</div>
-    </div>
-
+    <div class="filter-tabs" id="filterTabs"></div>
     <div id="expenseList"></div>
   </div>
 
   <!-- PYTHON ANALYSIS -->
-  <div class="section" id="analysisSection">
+  <div class="section">
     <div class="section-title">Python Analysis</div>
     <button class="btn btn-primary btn-full" id="analyzeBtn" onclick="analyzeTrip()">Analyze Trip</button>
     <div id="analysisOut"></div>
@@ -762,486 +146,64 @@ select option { background: var(--surface2); }
 </div>
 
 <!-- MODALS -->
-
-<!-- Adjust Modal -->
 <div class="modal-bg" id="adjustBG">
   <div class="modal">
     <h3 id="adjustTitle">Adjust Budget</h3>
     <p id="adjustDesc"></p>
     <div class="field-wrap has-prefix">
-      <span class="currency-prefix" id="adjPrefix">₹</span>
+      <span class="prefix">₹</span>
       <input type="number" id="adjustInput" placeholder="Amount">
     </div>
     <div class="modal-actions">
-      <button class="btn btn-ghost" style="flex:1" onclick="closeAdjust()">Cancel</button>
-      <button class="btn btn-primary" style="flex:1" onclick="confirmAdjust()">Confirm</button>
+      <button class="btn btn-ghost" onclick="closeModal('adjustBG')">Cancel</button>
+      <button class="btn btn-primary" onclick="confirmAdjust()">Confirm</button>
     </div>
   </div>
 </div>
 
-<!-- Reset Modal -->
 <div class="modal-bg" id="resetBG">
   <div class="modal">
     <h3>Start New Trip?</h3>
     <p>All expenses and budget will be cleared. This cannot be undone.</p>
     <div class="modal-actions">
-      <button class="btn btn-ghost" style="flex:1" onclick="closeReset()">Cancel</button>
-      <button class="btn btn-primary" style="flex:1;background:var(--red)" onclick="resetTrip()">Reset</button>
+      <button class="btn btn-ghost" onclick="closeModal('resetBG')">Cancel</button>
+      <button class="btn btn-danger" onclick="resetTrip()">Reset</button>
     </div>
   </div>
 </div>
 
-<!-- Delete Confirm Modal -->
 <div class="modal-bg" id="deleteBG">
   <div class="modal">
     <h3>Delete Expense?</h3>
-    <p id="deleteDesc">This will remove the expense permanently.</p>
+    <p id="deleteDesc"></p>
     <div class="modal-actions">
-      <button class="btn btn-ghost" style="flex:1" onclick="closeDelete()">Cancel</button>
-      <button class="btn btn-primary" style="flex:1;background:var(--red)" onclick="confirmDelete()">Delete</button>
+      <button class="btn btn-ghost" onclick="closeModal('deleteBG')">Cancel</button>
+      <button class="btn btn-danger" onclick="confirmDelete()">Delete</button>
     </div>
   </div>
 </div>
 
-<!-- Settings Modal -->
 <div class="modal-bg" id="settingsBG">
   <div class="modal">
     <h3>Settings</h3>
-    <p>Update trip details or change currency.</p>
-    <div class="field-wrap" style="margin-bottom:12px">
+    <p>Update trip details.</p>
+    <div class="field-wrap mb10">
       <div class="field-label">TRIP NAME</div>
       <input type="text" id="settingsTripName" placeholder="Trip name">
     </div>
-    <div class="field-wrap" style="margin-bottom:12px">
+    <div class="field-wrap mb10">
       <div class="field-label">TOTAL DAYS</div>
       <input type="number" id="settingsDays" placeholder="Days" min="1">
     </div>
     <div class="modal-actions">
-      <button class="btn btn-ghost" style="flex:1" onclick="closeSettings()">Cancel</button>
-      <button class="btn btn-primary" style="flex:1" onclick="saveSettings()">Save</button>
+      <button class="btn btn-ghost" onclick="closeModal('settingsBG')">Cancel</button>
+      <button class="btn btn-primary" onclick="saveSettings()">Save</button>
     </div>
   </div>
 </div>
 
-<!-- TOAST -->
 <div class="toast" id="toast"></div>
 
-<script>
-const CAT_COLORS = {
-  Food:       '#f7c444',
-  Travel:     '#7c6af7',
-  Stay:       '#38d1d1',
-  Activities: '#2dd4a0',
-  Shopping:   '#e96bbf',
-  Medical:    '#f25f5f',
-  Fuel:       '#f07a4a',
-  Other:      '#7878a0',
-};
-
-const CAT_EMOJI = {
-  Food:'🍜', Travel:'🚌', Stay:'🏕',
-  Activities:'🧗', Shopping:'🛍',
-  Medical:'💊', Fuel:'⛽', Other:'📦'
-};
-
-let state = {
-  budget: 0,
-  expenses: [],
-  tripName: '',
-  currency: { sym:'₹', code:'INR' },
-  days: 1,
-  locked: false,
-};
-
-let activeFilter = 'All';
-let pendingDeleteId = null;
-let adjustInc = true;
-
-function load() {
-  const s = localStorage.getItem('triptrack_v2');
-  if (s) state = JSON.parse(s);
-}
-
-function save() {
-  localStorage.setItem('triptrack_v2', JSON.stringify(state));
-}
-
-function sym() { return state.currency.sym; }
-
-function fmt(n) {
-  return sym() + Number(n).toLocaleString('en-IN', {maximumFractionDigits:0});
-}
-
-// ---- INIT ----
-load();
-applyLockState();
-renderAll();
-
-function applyLockState() {
-  const budInp = document.getElementById('budgetInput');
-  const tripNameInp = document.getElementById('tripNameInput');
-  const tripDaysInp = document.getElementById('tripDaysInput');
-  const lockBtn = document.getElementById('lockBtn');
-  const adjRow = document.getElementById('adjustRow');
-
-  if (state.locked) {
-    budInp.disabled = true;
-    tripNameInp.disabled = true;
-    tripDaysInp.disabled = true;
-    lockBtn.style.display = 'none';
-    adjRow.style.display = 'flex';
-  } else {
-    budInp.disabled = false;
-    tripNameInp.disabled = false;
-    tripDaysInp.disabled = false;
-    lockBtn.style.display = 'block';
-    adjRow.style.display = 'none';
-  }
-
-  // Pre-fill
-  budInp.value = state.budget || '';
-  tripNameInp.value = state.tripName || '';
-  tripDaysInp.value = state.days || '';
-
-  // Currency
-  document.querySelectorAll('.currency-opt').forEach(el => {
-    el.classList.toggle('sel', el.dataset.sym === state.currency.sym);
-  });
-  document.getElementById('currPrefix').textContent = sym();
-  document.getElementById('expPrefix').textContent = sym();
-  document.getElementById('adjPrefix').textContent = sym();
-  document.getElementById('tripNameDisplay').textContent = state.tripName || 'No trip set';
-}
-
-function renderAll() {
-  renderStats();
-  renderCats();
-  renderExpenses();
-}
-
-// ---- CURRENCY ----
-function selCurrency(el) {
-  if (state.locked) return;
-  document.querySelectorAll('.currency-opt').forEach(e => e.classList.remove('sel'));
-  el.classList.add('sel');
-  state.currency = { sym: el.dataset.sym, code: el.dataset.code };
-  document.getElementById('currPrefix').textContent = sym();
-  document.getElementById('expPrefix').textContent = sym();
-  document.getElementById('adjPrefix').textContent = sym();
-}
-
-// ---- BUDGET ----
-function lockBudget() {
-  const name = document.getElementById('tripNameInput').value.trim();
-  const budget = Number(document.getElementById('budgetInput').value);
-  const days = Number(document.getElementById('tripDaysInput').value) || 1;
-
-  if (!name) { toast('Enter a trip name'); return; }
-  if (budget <= 0) { toast('Enter a valid budget'); return; }
-
-  state.tripName = name;
-  state.budget = budget;
-  state.days = days;
-  state.locked = true;
-
-  save();
-  applyLockState();
-  renderAll();
-  toast('Trip locked! Have a great expedition ✈');
-}
-
-// ---- ADJUST ----
-function openAdjust(isInc) {
-  adjustInc = isInc;
-  document.getElementById('adjustTitle').textContent = isInc ? 'Increase Budget' : 'Decrease Budget';
-  document.getElementById('adjustDesc').textContent = isInc
-    ? 'Add extra funds to your trip budget.'
-    : 'Reduce your available budget.';
-  document.getElementById('adjustInput').value = '';
-  document.getElementById('adjustBG').classList.add('open');
-}
-function closeAdjust() { document.getElementById('adjustBG').classList.remove('open'); }
-function confirmAdjust() {
-  const v = Number(document.getElementById('adjustInput').value);
-  if (v <= 0) { toast('Enter a valid amount'); return; }
-  if (!adjustInc && v > state.budget) { toast('Not enough budget'); return; }
-  state.budget += adjustInc ? v : -v;
-  document.getElementById('budgetInput').value = state.budget;
-  save(); renderAll(); closeAdjust();
-  toast(adjustInc ? `Budget increased by ${fmt(v)}` : `Budget reduced by ${fmt(v)}`);
-}
-
-// ---- RESET ----
-function openReset() { document.getElementById('resetBG').classList.add('open'); }
-function closeReset() { document.getElementById('resetBG').classList.remove('open'); }
-function resetTrip() {
-  state = { budget:0, expenses:[], tripName:'', currency:{sym:'₹',code:'INR'}, days:1, locked:false };
-  localStorage.removeItem('triptrack_v2');
-  activeFilter = 'All';
-  document.querySelectorAll('.tab').forEach((t,i) => t.classList.toggle('active', i===0));
-  applyLockState(); renderAll(); closeReset();
-  toast('Trip reset. Ready for a new adventure!');
-}
-
-// ---- SETTINGS ----
-function openSettings() {
-  document.getElementById('settingsTripName').value = state.tripName;
-  document.getElementById('settingsDays').value = state.days;
-  document.getElementById('settingsBG').classList.add('open');
-}
-function closeSettings() { document.getElementById('settingsBG').classList.remove('open'); }
-function saveSettings() {
-  const name = document.getElementById('settingsTripName').value.trim();
-  const days = Number(document.getElementById('settingsDays').value) || 1;
-  if (!name) { toast('Enter a trip name'); return; }
-  state.tripName = name;
-  state.days = days;
-  save(); applyLockState(); renderAll(); closeSettings();
-  toast('Settings saved');
-}
-
-// ---- ADD EXPENSE ----
-function addExpense() {
-  if (!state.locked) { toast('Lock your budget first'); return; }
-  const name = document.getElementById('expName').value.trim();
-  const amt  = Number(document.getElementById('expAmt').value);
-  const cat  = document.getElementById('expCat').value;
-  const day  = Number(document.getElementById('expDay').value) || 1;
-  const note = document.getElementById('expNote').value.trim();
-
-  if (!name || amt <= 0) { toast('Enter a valid name and amount'); return; }
-
-  state.expenses.unshift({
-    id: Date.now(),
-    name, amount: amt, cat, day, note,
-    ts: new Date().toISOString()
-  });
-
-  document.getElementById('expName').value = '';
-  document.getElementById('expAmt').value = '';
-  document.getElementById('expNote').value = '';
-
-  save(); renderAll();
-  toast('Expense added');
-}
-
-// ---- DELETE ----
-function openDelete(id) {
-  pendingDeleteId = id;
-  const e = state.expenses.find(x => x.id === id);
-  document.getElementById('deleteDesc').textContent =
-    `Remove "${e.name}" (${fmt(e.amount)})?`;
-  document.getElementById('deleteBG').classList.add('open');
-}
-function closeDelete() { document.getElementById('deleteBG').classList.remove('open'); }
-function confirmDelete() {
-  state.expenses = state.expenses.filter(x => x.id !== pendingDeleteId);
-  save(); renderAll(); closeDelete();
-  toast('Expense removed');
-}
-
-// ---- FILTER ----
-function setFilter(el) {
-  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-  el.classList.add('active');
-  activeFilter = el.dataset.filter;
-  renderExpenses();
-}
-
-// ---- RENDER STATS ----
-function renderStats() {
-  const total = state.expenses.reduce((s,e) => s + e.amount, 0);
-  const rem   = state.budget - total;
-  const pct   = state.budget > 0 ? Math.min(total / state.budget * 100, 100) : 0;
-  const color = pct < 70 ? 'var(--green)' : pct < 90 ? 'var(--amber)' : 'var(--red)';
-
-  document.getElementById('totalSpentVal').textContent = fmt(total).slice(sym().length);
-  document.getElementById('totalSpentVal').style.color = 'var(--text)';
-  document.getElementById('totalSpentSub').textContent = `${state.expenses.length} expense${state.expenses.length !== 1 ? 's' : ''}`;
-
-  document.getElementById('remainingVal').textContent = fmt(Math.abs(rem)).slice(sym().length);
-  document.getElementById('remainingVal').style.color = rem >= 0 ? 'var(--green)' : 'var(--red)';
-  document.getElementById('remainingSub').textContent = rem < 0 ? 'OVER BUDGET' : `of ${fmt(state.budget)} budget`;
-
-  // Daily avg
-  const days = Math.max(state.days, 1);
-  const daysPassed = Math.min(
-    Math.max(...state.expenses.map(e=>e.day||1), 1),
-    days
-  );
-  const avg = state.expenses.length > 0 ? total / daysPassed : 0;
-  document.getElementById('dailyAvgVal').textContent = avg > 0 ? fmt(avg).slice(sym().length) : '—';
-  document.getElementById('dailyAvgSub').textContent = `day ${daysPassed} of ${days}`;
-
-  // Top category
-  const catTotals = {};
-  state.expenses.forEach(e => { catTotals[e.cat] = (catTotals[e.cat]||0) + e.amount; });
-  const topCat = Object.entries(catTotals).sort((a,b) => b[1]-a[1])[0];
-  if (topCat) {
-    document.getElementById('topCatVal').textContent = `${CAT_EMOJI[topCat[0]]} ${topCat[0]}`;
-    document.getElementById('topCatSub').textContent = fmt(topCat[1]);
-  } else {
-    document.getElementById('topCatVal').textContent = '—';
-    document.getElementById('topCatSub').textContent = 'no expenses yet';
-  }
-
-  // Progress bar
-  document.getElementById('budgetFill').style.width = pct + '%';
-  document.getElementById('budgetFill').style.background = color;
-  document.getElementById('barSpentLabel').textContent = `Spent: ${fmt(total)}`;
-  document.getElementById('barPctLabel').textContent = `${Math.round(pct)}% used`;
-  document.getElementById('barBudgetLabel').textContent = `Budget: ${fmt(state.budget)}`;
-
-  document.getElementById('tripNameDisplay').textContent = state.tripName || 'No trip set';
-}
-
-// ---- RENDER CATEGORIES ----
-function renderCats() {
-  const total = state.expenses.reduce((s,e) => s + e.amount, 0);
-  const catTotals = {};
-  state.expenses.forEach(e => { catTotals[e.cat] = (catTotals[e.cat]||0) + e.amount; });
-  const sorted = Object.entries(catTotals).sort((a,b) => b[1]-a[1]);
-  const el = document.getElementById('catList');
-
-  if (!sorted.length) {
-    el.innerHTML = '<div style="color:var(--muted2);font-size:13px;text-align:center;padding:8px 0">No expenses yet</div>';
-    return;
-  }
-
-  el.innerHTML = sorted.map(([cat, amt]) => {
-    const pct = total > 0 ? (amt / total * 100) : 0;
-    const color = CAT_COLORS[cat] || '#7878a0';
-    return `<div class="cat-row">
-      <div class="cat-dot" style="background:${color}"></div>
-      <div class="cat-name">${CAT_EMOJI[cat]||''} ${cat}</div>
-      <div class="cat-bar-wrap">
-        <div class="cat-bar-fill" style="width:${pct}%;background:${color}"></div>
-      </div>
-      <div class="cat-amt" style="color:${color}">${fmt(amt)}</div>
-    </div>`;
-  }).join('');
-}
-
-// ---- RENDER EXPENSES ----
-function renderExpenses() {
-  const filtered = activeFilter === 'All'
-    ? state.expenses
-    : state.expenses.filter(e => e.cat === activeFilter);
-
-  const el = document.getElementById('expenseList');
-
-  if (!filtered.length) {
-    el.innerHTML = `<div class="empty-state">
-      <div class="empty-icon">${activeFilter === 'All' ? '📋' : (CAT_EMOJI[activeFilter]||'📋')}</div>
-      <div>${activeFilter === 'All' ? 'No expenses logged yet' : 'No ' + activeFilter + ' expenses'}</div>
-    </div>`;
-    return;
-  }
-
-  // Group by day
-  const byDay = {};
-  filtered.forEach(e => {
-    const d = e.day || 1;
-    if (!byDay[d]) byDay[d] = [];
-    byDay[d].push(e);
-  });
-
-  const days = Object.keys(byDay).map(Number).sort((a,b) => b-a);
-
-  el.innerHTML = days.map(day => {
-    const exps = byDay[day];
-    const dayTotal = exps.reduce((s,e) => s + e.amount, 0);
-    const items = exps.map(e => `
-      <div class="expense-item">
-        <div class="exp-cat-icon" style="background:${CAT_COLORS[e.cat]}22">
-          ${CAT_EMOJI[e.cat]||'📦'}
-        </div>
-        <div class="exp-info">
-          <div class="exp-name">${e.name}</div>
-          <div class="exp-meta">${e.cat}${e.note ? ' · ' + e.note : ''}</div>
-        </div>
-        <div class="exp-right">
-          <div class="exp-amt" style="color:${CAT_COLORS[e.cat]||'var(--text)'}">${fmt(e.amount)}</div>
-          <button class="del-btn" onclick="openDelete(${e.id})">✕</button>
-        </div>
-      </div>
-    `).join('');
-
-    return `
-      <div class="day-badge">Day ${day} · ${fmt(dayTotal)}</div>
-      ${items}
-    `;
-  }).join('');
-}
-
-// ---- EXPORT (feeds the desktop analysis app) ----
-function exportTrip() {
-  const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = 'triptrack_export.json';
-  a.click();
-  URL.revokeObjectURL(a.href);
-  toast('Trip exported');
-}
-
-// ---- PYTHON ANALYSIS (calls Flask /api/analyze) ----
-async function analyzeTrip() {
-  const out = document.getElementById('analysisOut');
-  const btn = document.getElementById('analyzeBtn');
-  if (!state.expenses.length) { toast('Add some expenses first'); return; }
-  btn.disabled = true; btn.textContent = 'Analyzing…';
-  try {
-    const res = await fetch('/api/analyze', {
-      method: 'POST', headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(state)
-    });
-    if (!res.ok) throw new Error('bad response');
-    renderAnalysis(await res.json());
-  } catch (err) {
-    out.innerHTML = '<div class="an-note">Analysis needs the Python server. Run <b>python app.py</b> and open the app from http://127.0.0.1:5000.</div>';
-  }
-  btn.disabled = false; btn.textContent = 'Re-run Analysis';
-}
-
-function renderAnalysis(d) {
-  const s = d.stats;
-  const warn = d.forecast.over_budget;
-  const proj = d.forecast.has_forecast ? fmt(d.forecast.projected_total) : '—';
-  const insights = d.insights.map(t =>
-    `<div class="an-insight ${/over budget|Unusually/.test(t) ? 'warn' : ''}">${t.replace(/</g,'&lt;')}</div>`).join('');
-  document.getElementById('analysisOut').innerHTML = `
-    <div class="an-grid" style="margin-top:14px">
-      <div class="an-stat"><div class="l">Avg expense</div><div class="v">${fmt(s.mean)}</div></div>
-      <div class="an-stat"><div class="l">Median</div><div class="v">${fmt(s.median)}</div></div>
-      <div class="an-stat"><div class="l">Std deviation</div><div class="v">${fmt(s.std)}</div></div>
-      <div class="an-stat"><div class="l">Projected total</div><div class="v" style="color:${warn ? 'var(--red)' : 'var(--green)'}">${proj}</div></div>
-    </div>
-    ${insights}
-    <img class="an-chart" alt="Spending by category" src="data:image/png;base64,${d.charts.category}">
-    <img class="an-chart" alt="Spend trend and forecast" src="data:image/png;base64,${d.charts.trend}">
-    <div class="an-note">Computed in Python: numpy · scikit-learn · matplotlib</div>`;
-}
-
-// ---- TOAST ----
-function toast(msg) {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 2200);
-}
-
-// ---- PWA ----
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('service-worker.js');
-}
-
-// Close modals on BG click
-['adjustBG','resetBG','deleteBG','settingsBG'].forEach(id => {
-  document.getElementById(id).addEventListener('click', function(e) {
-    if (e.target === this) this.classList.remove('open');
-  });
-});
-</script>
+<script src="script.js"></script>
 </body>
 </html>

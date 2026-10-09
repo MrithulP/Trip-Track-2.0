@@ -32,9 +32,12 @@ def index():
     return send_from_directory(".", "index.html")
 
 
+STATIC_FILES = {"index.html", "style.css", "script.js", "service-worker.js", "manifest.json"}
+
+
 @app.route("/<path:filename>")
 def assets(filename):
-    if filename in ("manifest.json", "service-worker.js") or filename.endswith((".png", ".ico")):
+    if filename in STATIC_FILES or filename.endswith((".png", ".ico")):
         return send_from_directory(".", filename)
     return ("Not found", 404)
 

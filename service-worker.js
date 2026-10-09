@@ -1,17 +1,14 @@
-const CACHE_NAME = "triptrack-v5";
+const CACHE_NAME = "triptrack-v6"; // bump this whenever you edit index.html, style.css or script.js
 
-const FILES = [
-  "./",
-  "./index.html",
-  "./manifest.json",
-  "./icon-192.png",
-  "./icon-512.png"
-];
+const CORE  = ["./", "./index.html", "./style.css", "./script.js", "./manifest.json"];
+const ICONS = ["./icon-192.png", "./icon-512.png"]; // optional: a missing icon must not break install
 
 self.addEventListener("install", event => {
   self.skipWaiting();
   event.waitUntil(
-    caches.open(CACHE_NAME).then(cache => cache.addAll(FILES))
+    caches.open(CACHE_NAME).then(cache =>
+      cache.addAll(CORE).then(() => Promise.allSettled(ICONS.map(icon => cache.add(icon))))
+    )
   );
 });
 
