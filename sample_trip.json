@@ -1,4 +1,4 @@
-{"budget":20000,"tripName":"Spiti Valley (sample)","currency":{"sym":"₹","code":"INR"},"days":7,"locked":true,
+{"budget":20000,"tripName":"Kareri Lake (sample)","currency":{"sym":"₹","code":"INR"},"days":7,"locked":true,
  "expenses":[
  {"id":1,"name":"Lunch","amount":400,"cat":"Food","day":1},
  {"id":2,"name":"Bus","amount":1200,"cat":"Travel","day":1},
